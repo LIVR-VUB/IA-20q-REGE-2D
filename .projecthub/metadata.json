@@ -1,9 +1,9 @@
 {
   "LIVR-VUB/IA-REGE-Nusa#1": {
-    "priority": NaN,
+    "priority": "High",
     "importance": null,
     "is_external": true,
-    "collaborator": NaN,
-    "notes": NaN
+    "collaborator": "REGE-VUB",
+    "notes": null
   }
 }
