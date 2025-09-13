@@ -9,7 +9,7 @@
   "LIVR-VUB/IA-REGE-Nusa#2": {
     "priority": "Critical",
     "importance": null,
-    "is_external": false,
+    "is_external": true,
     "collaborator": "REGE-VUB",
     "notes": null
   }
