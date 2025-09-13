@@ -10,7 +10,7 @@
     "priority": "Critical",
     "importance": null,
     "is_external": false,
-    "collaborator": null,
+    "collaborator": "REGE-VUB",
     "notes": null
   }
 }
