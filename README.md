@@ -13,7 +13,7 @@ The pipeline consists of two main stages:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -54,7 +54,7 @@ pip install -r requirements.txt
 
 ---
 
-## 📦 Setting Up Dependencies (Crucial Steps)
+## Setting Up Dependencies (Crucial Steps)
 
 Before running any analysis, you **MUST** download the custom segmentation models and the Singularity container.
 
@@ -84,7 +84,7 @@ bash 01_Cellpose_segment/1.pull_container.sh
 
 ---
 
-## 🔬 Running the Analysis
+## Running the Analysis
 
 The analysis is split into **Segmentation** (HPC/GPU) and **Downstream Quantification** (HPC/CPU).
 
@@ -129,7 +129,7 @@ python3 02_Downstream_analysis/marker_classification_HPC_v2.py \
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 IA-20q-REGE-2D/
@@ -148,7 +148,7 @@ IA-20q-REGE-2D/
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License**.
 
