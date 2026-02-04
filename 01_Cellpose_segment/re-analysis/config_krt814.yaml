@@ -1,11 +1,10 @@
 # ==== Marker-aware 3-Channel Cellpose Pipeline (c1, c2, c3) ====
 
 # Root folder with your .czi files
-input_dir: "/scratch/brussel/vo/000/bvo00026/vsc11013/Projects/REGE-Nusa/Raw_data_renamed"
+input_dir: "/scratch/brussel/vo/000/bvo00026/vsc11013/Projects/REGE-Nusa/Output_Final/Figure_3_panel_D/VUB14/KRT814"
 
-# Root folder for outputs (masks + images), preserving
-# the relative directory structure of input_dir.
-output_dir: "/scratch/brussel/vo/000/bvo00026/vsc11013/Projects/REGE-Nusa/Output_Final"
+# Root folder for outputs (masks + images), preserving the relative directory structure of input_dir.
+output_dir: "/scratch/brussel/vo/000/bvo00026/vsc11013/Projects/REGE-Nusa/Output_Final/Figure_3_panel_D/VUB14/KRT814"
 
 # For now you have 2D images, but if in future you get Z-stacks:
 # This controls how Z is collapsed into one plane for segmentation.
@@ -18,14 +17,23 @@ exclude_name_contains:
   - "overlay"
   - "overview"
 
+# File extensions to process (case-insensitive)
+extensions:
+  - ".tif"
+  - ".tiff"
+
 cellpose:
   use_gpu: true
+  force_resample: true         # IMPORTANT: keep masks at original image size
+  verbose_resize_fix: true     # prints when a mask had to be resized to match input
+  diameter: null               # Global default diameter (null = auto estimate). Override per-channel below.
 
 # ------------------------------------------------------------------
 # Markers for which segmentation should NEVER be run (any channel).
 # Example: skip all OCT4 channels.
 # ------------------------------------------------------------------
-skip_markers: [] # Use [] if you do not want to skip any markers
+skip_markers:
+  - EYA1   # Use [] if you do not want to skip any markers
 
 # ------------------------------------------------------------------
 # Marker classification – which markers are nuclear / cytoplasmic / etc.
@@ -88,25 +96,28 @@ channels:
     index: 1             # corresponds to c1 (EYA1-647)
     enabled: true        # set to false to skip c1 entirely
     model: null          # fallback only if marker not classified
-    flow_threshold: null
-    cellprob_threshold: null
-    bg_subtract: 1200
+    flow_threshold: 0.4
+    cellprob_threshold: -0.2
+    bg_subtract: 3000
+    diameter: null       # null = use global or auto estimate
 
   c2:
     index: 2             # corresponds to c2 (PAX6-594)
     enabled: true        # set to false to skip c2 entirely
     model: null
-    flow_threshold: 0.8
-    cellprob_threshold: -8
-    bg_subtract: 1200
+    flow_threshold: 0.4
+    cellprob_threshold: -0.2
+    bg_subtract: 3000
+    diameter: null       # null = use global or auto estimate
 
   c3:
     index: 3             # corresponds to c3 (DAPI-405)
     enabled: true        # set to false to skip c3 entirely
     model: null
-    flow_threshold: 0.8
-    cellprob_threshold: -8
-    bg_subtract: 1200
+    flow_threshold: 0.4
+    cellprob_threshold: -0.2
+    bg_subtract: 3000
+    diameter: null       # null = use global or auto estimate
 
 save:
   projections: false   # writes *_cX_proj.tif (same as *_cX_img.tif for 2D)

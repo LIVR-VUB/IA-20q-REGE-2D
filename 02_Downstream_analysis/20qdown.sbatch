@@ -3,9 +3,9 @@
 #SBATCH --partition=zen5_mpi
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=64
-#SBATCH --mem=512G
-#SBATCH --time=72:00:00
+#SBATCH --cpus-per-task=24
+#SBATCH --mem=64G
+#SBATCH --time=12:00:00
 #SBATCH --output=20qdown_%j.log
 
 module purge
@@ -29,20 +29,6 @@ export NUMEXPR_NUM_THREADS=1
 
 echo "[INFO] Starting per-folder quantification using $N_WORKERS workers..."
 
-python down_analysis_parallel_HPC.py \
-    --input_dir "$INPUT_DIR" \
-    --output_dir "$OUTPUT_DIR" \
-    --n_workers $N_WORKERS
+#python down_analysis_HPC.py --input_dir "$INPUT_DIR" --output_dir "$OUTPUT_DIR" --n_workers $N_WORKERS
 
-if [ $(find "$OUTPUT_DIR" -name "*_per_cell_features.csv" | wc -l) -eq 0 ]; then
-    echo "[ERROR] down_analysis_HPC.py did not produce any *_per_cell_features.csv files; aborting."
-    exit 1
-fi
-
-echo "[INFO] Quantification complete. Starting batch analysis..."
-
-python down_analysis_cellstate_parallel_HPC.py \
-    --root_dir "$OUTPUT_DIR" \
-    --n_workers $N_WORKERS
-
-echo "[INFO] Job completed successfully."
+python marker_classification_HPC_v2.py --input_dir "$INPUT_DIR" --output_dir "$OUTPUT_DIR" --n_workers $N_WORKERS
