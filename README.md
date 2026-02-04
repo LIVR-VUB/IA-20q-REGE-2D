@@ -91,7 +91,7 @@ The analysis is split into **Segmentation** (HPC/GPU) and **Downstream Quantific
 ### Part 1: Segmentation (HPC/GPU)
 
 Use the container downloaded in Step 2 to run Cellpose segmentation on your raw TIFF images. 
-*(Note: Specific SLURM submission scripts for this step are typically located in `01_Cellpose_segment` or adapted from template scripts.)*
+*(Note: Specific SLURM submission scripts for this step are typically located in `01_Cellpose_segment` or adapted from template scripts.)*. Inside the `01_Cellpose_segment` folder there is an SLURM job script which can be repurposed as shell script to run the whiole pipeline.
 
 ### Part 2: Downstream Analysis (Quantification & Classification)
 
