@@ -30,10 +30,10 @@ We recommend using **Python 3.11**. You can set up your environment using `venv`
 
 ```bash
 # Create a virtual environment named 'env'
-python3.11 -m venv env
+python3.11 -m venv rege
 
 # Activate the environment
-source env/bin/activate
+source rege/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
